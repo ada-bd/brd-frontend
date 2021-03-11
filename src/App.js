@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+} from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import LoginPage from './pages/LoginPage'
+import FormPage from './pages/FormPage'
+import { Layout } from 'antd';
+
+const { Content, Footer } = Layout;
+
+export default function App() {
+    const isAuthenticated = localStorage.getItem('brd-login') != null;
+    return (
+        <Layout>
+            <Content style={{minHeight: '90vh'}}>
+                <Router>
+                    <Switch>
+                        <Route  
+                            exact path="/"
+                            render={() => (
+                                <LoginPage
+                                    isAuthenticated={isAuthenticated}
+                                />
+                            )}
+                        />
+                        <ProtectedRoute
+                            exact path="/form"
+                            isAuthenticated={isAuthenticated}
+                            component={FormPage}
+                        />
+                    </Switch>
+                </Router>
+            </Content>
+            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        </Layout>
+    )
 }
-
-export default App;
