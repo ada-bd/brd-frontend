@@ -84,7 +84,7 @@ export default function FormPage() {
     }
     return (
         <div className="container">
-            <Card>
+            <Card className="mt-3">
                 <Row>
                     <Col span={10} offset={7}>
                         {renderForm()}
