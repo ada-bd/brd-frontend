@@ -12,34 +12,28 @@ export default function ThirdForm(props) {
     setTimeout(() => {
         setCardHidden(false)
     }, 700);
-    const onFinish = ({outlet_code,outlet_name,brand,watched_av,contact_method}) => {
-        // const canvas = sigPad.current.getTrimmedCanvas().toDataURL("image/png")
-        const canvas = sigPad.current.toData()
 
-        async function changeState(){
-            props.thirdFormFinish(outlet_code,outlet_name,brand,watched_av,contact_method,canvas)
-        }
-
-        changeState().then(
-            
-            props.finalSubmit()
-        )
-    }
+    // const onFinish = ({outlet_code,outlet_name,brand,watched_av,contact_method}) => {
+    //     const canvas = sigPad.current.getTrimmedCanvas().toDataURL("image/png")
+    //     props.thirdFormFinish(outlet_code,outlet_name,brand,watched_av,contact_method,canvas)
+    //     props.finalSubmit()
+    // }
 
     const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
 
     return (
-        <Form style={cardAnimation} form={form} onFinish={onFinish}>
+        <Form style={cardAnimation} form={form}>
             <Form.Item name="outlet_code" label="Outlet code" rules={[{ required: true }]}>
-                <InputNumber type="number" placeholder="Min 10 Max 11" style={{minWidth:"100%"}}/>
+                <Input type="number" placeholder="Min 10 Max 11" style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_code",e.target.value)}/>
             </Form.Item>
             <Form.Item name="outlet_name" label="Outlet name" rules={[{ required: true }]}>
-                <Input style={{minWidth:"100%"}}/>
+                <Input style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_name",e.target.value)}/>
             </Form.Item>
             <Form.Item name="brand" label="Current Brand" rules={[{ required: true }]}>
                 <Select
                     placeholder="Select"
-                >
+                    onChange={(e)=>props.onChange("brand",e)}
+                    >
                     <Option value="1">Navy</Option>
                     <Option value="2">Star</Option>
                     <Option value="3">Derby</Option>
@@ -50,7 +44,8 @@ export default function ThirdForm(props) {
             <Form.Item name="watched_av" label="Have existing adult smoker watched AV?" rules={[{ required: true }]}>
                 <Select
                     placeholder="Select"
-                >
+                    onChange={(e)=>props.onChange("watched_av",e)}
+                    >
                     <Option value="1">Yes</Option>
                     <Option value="2">No</Option>
                     <Option value="3">Partial</Option>
@@ -59,6 +54,7 @@ export default function ThirdForm(props) {
             <Form.Item name="contact_method" label="Contact method" rules={[{ required: true }]}>
                 <Select
                     placeholder="Select"
+                    onChange={(e)=>props.onChange("contact_method",e)}
                 >
                     <Option value="1">Lighter VAO</Option>
                     <Option value="2">Plastic Sachet</Option>
@@ -80,7 +76,7 @@ export default function ThirdForm(props) {
             <br/>
             <Row justify="center">
                 <Button size="large" shape="round" type="default" style={{marginRight:"20px"}} onClick={props.logout}>Logout</Button>
-                <Button size="large" shape="round" type="primary" htmlType="submit">Submit</Button>
+                <Button size="large" shape="round" type="primary" onClick={props.formSubmit}>Submit</Button>
             </Row>
         </Form>
     )

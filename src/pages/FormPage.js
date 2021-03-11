@@ -31,18 +31,11 @@ export default function FormPage() {
         window.location.href = '/';
     }
 
-    const firstFormFinish = (phone_number) => {
-        setState({...state,phone_number})
+    const onChange = (name,value) => {
+        setState({...state,[name]:value})
     }
-    const secondFormFinish = (name,age,occupation) => {
-        setState({...state,name,age,occupation})
-    }
-    const thirdFormFinish = (outlet_code,outlet_name,brand,watched_av,contact_method,signature) => {
-        setState({...state,outlet_code,outlet_name,brand,watched_av,contact_method,signature})
-        console.log(state)
-    }
-    console.log(state)
-    const finalSubmit = ()=> {
+
+    const formSubmit = ()=> {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -66,26 +59,25 @@ export default function FormPage() {
             contact_method: state.contact_method,
             // signature: image
         });
+        axios
+            .post(API_FINAL_SUBMISSION, body, config)
+            .then((res) => {
+                message.success("Form submitted successfully");
+            })
+            .catch((err) => {
+                message.error(err.response.statusText);
+                console.log(err.response);
+            });
         console.log(body)
-        // axios
-        //     .post(API_FINAL_SUBMISSION, body, config)
-        //     .then((res) => {
-        //         message.success("Form submitted successfully");
-        //     })
-        //     .catch((err) => {
-        //         message.error(err.response.statusText);
-        //         console.log(err.response);
-        //     });
     }
-
     const renderForm = () => {
         switch (step) {
             case 0:
-                return <FirstForm next={nextStep} logout={logout} firstFormFinish={firstFormFinish}/>
+                return <FirstForm next={nextStep} logout={logout} onChange={onChange}/>
             case 1:
-                return <SecondForm next={nextStep} logout={logout} secondFormFinish={secondFormFinish}/>
+                return <SecondForm next={nextStep} logout={logout} onChange={onChange}/>
             case 2:
-                return <ThirdForm next={nextStep} logout={logout} thirdFormFinish={thirdFormFinish} finalSubmit={finalSubmit}/>
+                return <ThirdForm logout={logout} onChange={onChange} formSubmit={formSubmit}/>
             default:
                 return <h1>Thank You</h1>
         }

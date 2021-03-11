@@ -21,24 +21,20 @@ export default function SecondForm(props) {
     const [cardHidden,setCardHidden] = useState(true)
     setTimeout(() => {
         setCardHidden(false)
-    }, 700);
-
-    const onFinish = ({name,age,occupation}) => {
-        props.secondFormFinish(name,age,occupation)
-        props.next()
-    };    
+    }, 700);   
 
     const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
 
     return (
-        <Form style={cardAnimation} form={form} onFinish={onFinish}>
+        <Form style={cardAnimation} form={form}>
             <Form.Item label="Name" name="name" rules={[{ required: true }]}>
-                <Input style={{minWidth:"100%"}}/>
+                <Input style={{minWidth:"100%"}} onChange={(e)=>props.onChange("name",e.target.value)}/>
             </Form.Item>
             <Form.Item name="age" label="Select age" rules={[{ required: true }]}> 
                 <Select
                     placeholder="Select"
-                >
+                    onChange={(e)=>props.onChange("age",e)}
+                    >
                     <Option value="1">18-25</Option>
                     <Option value="2">26-30</Option>
                     <Option value="3">31-35</Option>
@@ -51,6 +47,7 @@ export default function SecondForm(props) {
             <Form.Item name="occupation" label="Occupation" rules={[{ required: true }]}>
                 <Select
                     placeholder="Select"
+                    onChange={(e)=>props.onChange("occupation",e)}
                 >
                     <Option value="1">Service Holder ( চাকরিজীবী )</Option>
                     <Option value="2">Student ( স্টূডেন্ট )</Option>
@@ -85,7 +82,7 @@ export default function SecondForm(props) {
 
             <Row justify="center">
                 <Button size="large" shape="round" type="default" style={{marginRight:"20px"}} onClick={props.logout}>Logout</Button>
-                <Button size="large" shape="round" type="primary" htmlType="submit" disabled={disableNext}>Next</Button>
+                <Button size="large" shape="round" type="primary" onClick={props.next} disabled={disableNext}>Next</Button>
             </Row>
         </Form>
     )

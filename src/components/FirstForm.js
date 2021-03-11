@@ -29,32 +29,27 @@ export default function FirstForm(props) {
         sendOTP()
     }
 
-    const onFinish = ({phone_number}) => {
-        props.firstFormFinish(phone_number)
-        props.next()
-    };
-
     const checkOTPVarification = () => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
             },
         };
-        // const body = JSON.stringify({
-        //     phone_number: "+88"+form.getFieldValue('phone_number'),
-        //     vendor: "2",
-        //     otp: form.getFieldValue('otp')
-        // });
-        // axios
-        // .post(API_OTP_CONFIRMATION, body, config)
-        // .then((res) => {
+        const body = JSON.stringify({
+            phone_number: "+88"+form.getFieldValue('phone_number'),
+            vendor: "2",
+            otp: form.getFieldValue('otp')
+        });
+        axios
+        .post(API_OTP_CONFIRMATION, body, config)
+        .then((res) => {
                 setVarified(true)
-        //         message.error("Phone number varified successfully");
-        //     })
-        //     .catch((err) => {
-        //         setVarified(false)
-        //         message.error("Wrong OTP");
-        //     });
+                message.success("Phone number varified successfully");
+            })
+            .catch((err) => {
+                setVarified(false)
+                message.error("Wrong OTP");
+            });
     }
 
     const sendOTP = () => {
@@ -67,25 +62,25 @@ export default function FirstForm(props) {
             phone_number: "+88"+form.getFieldValue('phone_number'),
             vendor: "2"
         });
-        // axios
-        //     .post(API_SEND_OTP, body, config)
-        //     .then((res) => {
-        //         message.success("OTP Send successfully");
-        //     })
-        //     .catch((err) => {
-        //         message.error("OTP Send failed");
-        //     });
+        axios
+            .post(API_SEND_OTP, body, config)
+            .then((res) => {
+                message.success("OTP Send successfully");
+            })
+            .catch((err) => {
+                message.error("OTP Send failed");
+            });
     }
 
     return (
-        <Form style={cardAnimation} onFinish={onFinish} form={form}>
+        <Form style={cardAnimation} form={form}>
             <Form.Item name="phone_number" label="Phone number" rules={[
                 {
                     pattern: /^[\d]{11,11}$/,
                     message: "Phone number must be 11 digit",
                 },
             ]}>
-                <Input type="number" placeholder="Ex. 01XXXXXXXXX" style={{minWidth:"100%"}} />
+                <Input type="number" placeholder="Ex. 01XXXXXXXXX" style={{minWidth:"100%"}} onChange={(e)=>props.onChange("phone_number",e.target.value)}/>
             </Form.Item>
             <Row justify="center">
                 <Button size="large" shape="round" type="primary" onClick={clearTimer} style={{marginRight:"20px"}}>Send</Button>
@@ -113,7 +108,7 @@ export default function FirstForm(props) {
             <br/>
             <Row justify="center">
                 <Button size="large" shape="round" type="default" style={{marginRight:"20px"}} onClick={props.logout}>Logout</Button>
-                <Button size="large" shape="round" type="primary" htmlType="submit" disabled={!varified}>Next</Button>
+                <Button size="large" shape="round" type="primary" onClick={props.next} disabled={!varified}>Next</Button>
             </Row>
         </Form>
     )
