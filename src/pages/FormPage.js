@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Card, Row, Col, message } from 'antd'
 import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 
 import FirstForm from '../components/FirstForm'
 import SecondForm from '../components/SecondForm'
@@ -8,7 +9,7 @@ import ThirdForm from '../components/ThirdForm'
 
 import { API_FINAL_SUBMISSION } from '../API'
 
-export default function FormPage() {
+function FormPage(props) {
     const [step,setStep] = useState(0)
     const [state,setState] = useState({
         phone_number: "",
@@ -63,12 +64,11 @@ export default function FormPage() {
             .post(API_FINAL_SUBMISSION, body, config)
             .then((res) => {
                 message.success("Form submitted successfully");
+                props.history.push('/profile')
             })
             .catch((err) => {
                 message.error(err.response.statusText);
-                console.log(err.response);
             });
-        console.log(body)
     }
     const renderForm = () => {
         switch (step) {
@@ -86,7 +86,7 @@ export default function FormPage() {
         <div className="container my-5" style={{width:'80vw'}}>
             <Card>
                 <Row justify="center">
-                    <Col xs={20} md={16}>
+                    <Col sm={20} md={16} lg={12}>
                         {renderForm()}
                     </Col>
                 </Row>
@@ -94,3 +94,5 @@ export default function FormPage() {
         </div>
     )
 }
+
+export default withRouter(FormPage)

@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 
 import LoginPage from './pages/LoginPage'
 import FormPage from './pages/FormPage'
+import ProfilePage from './pages/ProfilePage'
 import { Layout } from 'antd';
 
 const { Content, Footer } = Layout;
@@ -31,6 +32,11 @@ export default function App() {
                             exact path="/form"
                             isAuthenticated={isAuthenticated}
                             component={FormPage}
+                        />
+                        <ProtectedRoute
+                            exact path="/profile"
+                            isAuthenticated={isAuthenticated}
+                            component={ProfilePage}
                         />
                     </Switch>
                 </Router>

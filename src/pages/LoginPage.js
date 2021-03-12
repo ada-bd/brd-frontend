@@ -16,33 +16,30 @@ export default function LoginPage({ isAuthenticated }) {
             username: values['username'],
             password: values['password'],
         });
-
-        axios
-            .post(API_LOGIN, body, config)
-            .then((res) => {
-                localStorage.setItem('brd-login', res.data.token);
-                window.location.href = '/form';
-            })
-            .catch((err) => {
-                message.error(err.response.data.error);
-            });
-        };
         
-    const onFinishFailed = (errorInfo) => {
-        message.error(errorInfo);
+        axios
+        .post(API_LOGIN, body, config)
+        .then((res) => {
+            localStorage.setItem('brd-login', res.data.token);
+            window.location.href = "/form"
+        })
+        .catch((err) => {
+            message.error(err.response.data.error);
+        });
     };
+    
     return isAuthenticated ? (
         <Redirect
-            to={{
-                pathname: '/form',
-            }}
+        to={{
+            pathname: '/form',
+        }}
         />
-    ) : (
-        <div className="container my-5" style={{width:'80vw'}}>
+        ) : (
+            <div className="container my-5" style={{width:'80vw'}}>
             <Card>
                 <Row justify="center" className="py-5">
                     <Col xs={20} md={14}>
-                        <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+                        <Form onFinish={onFinish}>
                             <Form.Item
                                 label="Username"
                                 name="username"
@@ -52,7 +49,7 @@ export default function LoginPage({ isAuthenticated }) {
                                         message: 'Please input your username!',
                                     },
                                 ]}
-                            >
+                                >
                                 <Input />
                             </Form.Item>
                             <Form.Item
@@ -64,7 +61,7 @@ export default function LoginPage({ isAuthenticated }) {
                                         message: 'Please input your password!',
                                     },
                                 ]}
-                            >
+                                >
                                 <Input.Password />
                             </Form.Item>
                             <Form.Item>
@@ -77,3 +74,4 @@ export default function LoginPage({ isAuthenticated }) {
         </div>
     );
 }
+
