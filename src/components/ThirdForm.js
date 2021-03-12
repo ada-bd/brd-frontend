@@ -1,5 +1,5 @@
 import React,{ useState,useRef } from 'react'
-import { Form, InputNumber, Input,Row,Button,Select } from 'antd'
+import { Form, Input,Row,Button,Select } from 'antd'
 import SignatureCanvas from 'react-signature-canvas'
 
 const { Option } = Select;
@@ -22,7 +22,7 @@ export default function ThirdForm(props) {
     const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
 
     return (
-        <Form style={cardAnimation} form={form}>
+        <Form style={cardAnimation} form={form} onFinish={props.formSubmit}>
             <Form.Item name="outlet_code" label="Outlet code" rules={[{ required: true }]}>
                 <Input type="number" placeholder="Min 10 Max 11" style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_code",e.target.value)}/>
             </Form.Item>
@@ -76,7 +76,7 @@ export default function ThirdForm(props) {
             <br/>
             <Row justify="center">
                 <Button size="large" shape="round" type="default" style={{marginRight:"20px"}} onClick={props.logout}>Logout</Button>
-                <Button size="large" shape="round" type="primary" onClick={props.formSubmit}>Submit</Button>
+                <Button size="large" shape="round" type="primary" htmlType="submit">Submit</Button>
             </Row>
         </Form>
     )

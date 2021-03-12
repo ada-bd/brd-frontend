@@ -26,7 +26,7 @@ export default function SecondForm(props) {
     const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
 
     return (
-        <Form style={cardAnimation} form={form}>
+        <Form style={cardAnimation} form={form} className="my-5" onFinish={props.next}>
             <Form.Item label="Name" name="name" rules={[{ required: true }]}>
                 <Input style={{minWidth:"100%"}} onChange={(e)=>props.onChange("name",e.target.value)}/>
             </Form.Item>
@@ -82,7 +82,7 @@ export default function SecondForm(props) {
 
             <Row justify="center">
                 <Button size="large" shape="round" type="default" style={{marginRight:"20px"}} onClick={props.logout}>Logout</Button>
-                <Button size="large" shape="round" type="primary" onClick={props.next} disabled={disableNext}>Next</Button>
+                <Button size="large" shape="round" type="primary" htmlType='submit' disabled={disableNext}>Next</Button>
             </Row>
         </Form>
     )

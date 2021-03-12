@@ -73,12 +73,15 @@ export default function FirstForm(props) {
     }
 
     return (
-        <Form style={cardAnimation} form={form}>
+        <Form style={cardAnimation} form={form} className="my-5" onFinish={props.next}>
             <Form.Item name="phone_number" label="Phone number" rules={[
                 {
                     pattern: /^[\d]{11,11}$/,
                     message: "Phone number must be 11 digit",
                 },
+                {
+                    required: true
+                }
             ]}>
                 <Input type="number" placeholder="Ex. 01XXXXXXXXX" style={{minWidth:"100%"}} onChange={(e)=>props.onChange("phone_number",e.target.value)}/>
             </Form.Item>
@@ -108,7 +111,7 @@ export default function FirstForm(props) {
             <br/>
             <Row justify="center">
                 <Button size="large" shape="round" type="default" style={{marginRight:"20px"}} onClick={props.logout}>Logout</Button>
-                <Button size="large" shape="round" type="primary" onClick={props.next} disabled={!varified}>Next</Button>
+                <Button size="large" shape="round" type="primary" htmlType="submit" disabled={!varified}>Next</Button>
             </Row>
         </Form>
     )

@@ -83,10 +83,10 @@ export default function FormPage() {
         }
     }
     return (
-        <div className="container">
-            <Card className="mt-3">
-                <Row>
-                    <Col span={10} offset={7}>
+        <div className="container my-5" style={{width:'80vw'}}>
+            <Card>
+                <Row justify="center">
+                    <Col xs={20} md={16}>
                         {renderForm()}
                     </Col>
                 </Row>

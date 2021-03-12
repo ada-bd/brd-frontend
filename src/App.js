@@ -16,7 +16,7 @@ export default function App() {
     const isAuthenticated = localStorage.getItem('brd-login') != null;
     return (
         <Layout>
-            <Content style={{minHeight: '90vh'}}>
+            <Content style={{minHeight: '70vh'}}>
                 <Router>
                     <Switch>
                         <Route  
@@ -35,7 +35,7 @@ export default function App() {
                     </Switch>
                 </Router>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+            <Footer style={{ textAlign: 'center',minHeight: '30vh' }}>Copyright ©2021 BRD</Footer>
         </Layout>
     )
 }
