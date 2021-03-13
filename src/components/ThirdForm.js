@@ -71,7 +71,7 @@ export default function ThirdForm(props) {
                 </div>
             </Form.Item>
             <Row justify="center">
-                <Button size="large" shape="round" type="primary">Review form</Button>
+                <Button size="large" shape="round" type="primary" onClick={props.next}>Review form</Button>
             </Row>
             <br/>
             <Row justify="center">

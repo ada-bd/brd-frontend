@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 import FirstForm from '../components/FirstForm'
 import SecondForm from '../components/SecondForm'
 import ThirdForm from '../components/ThirdForm'
+import ReviewForm from '../components/ReviewForm'
 
 import { API_FINAL_SUBMISSION } from '../API'
 
@@ -77,7 +78,9 @@ function FormPage(props) {
             case 1:
                 return <SecondForm next={nextStep} logout={logout} onChange={onChange}/>
             case 2:
-                return <ThirdForm logout={logout} onChange={onChange} formSubmit={formSubmit}/>
+                return <ThirdForm logout={logout} next={nextStep} onChange={onChange} formSubmit={formSubmit}/>
+            case 3:
+                return <ReviewForm onChange={onChange} state={state} formSubmit={formSubmit}/>
             default:
                 return <h1>Thank You</h1>
         }
