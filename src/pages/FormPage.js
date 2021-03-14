@@ -22,7 +22,7 @@ function FormPage(props) {
         brand: "",
         watched_av: null,
         contact_method:"",
-        signature:""
+        // signature:""
     })
 
     const nextStep = () => {
@@ -46,8 +46,8 @@ function FormPage(props) {
         const token = localStorage.getItem('brd-login');
         config.headers['Authorization'] = `Token ${token}`;
         
-        let image = new Image()
-        image.src = state.signature
+        // let image = new Image()
+        // image.src = state.signature
         
         const body = JSON.stringify({
             phone_number:  "+88"+state.phone_number,
@@ -71,10 +71,13 @@ function FormPage(props) {
                 message.error(err.response.statusText);
             });
     }
+    const cancelActivity = () => {
+        window.location.href = "/form"
+    }
     const renderForm = () => {
         switch (step) {
             case 0:
-                return <FirstForm next={nextStep} logout={logout} onChange={onChange}/>
+                return <FirstForm next={nextStep} logout={logout} onChange={onChange} cancelActivity={cancelActivity}/>
             case 1:
                 return <SecondForm next={nextStep} logout={logout} onChange={onChange}/>
             case 2:

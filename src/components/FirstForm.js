@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Input,Form,Button, Row, Progress,message } from 'antd';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 import { API_SEND_OTP,API_OTP_CONFIRMATION } from '../API'
 
@@ -41,15 +42,15 @@ export default function FirstForm(props) {
             otp: form.getFieldValue('otp')
         });
         axios
-        .post(API_OTP_CONFIRMATION, body, config)
-        .then((res) => {
-                setVarified(true)
-                message.success("Phone number varified successfully");
-            })
-            .catch((err) => {
-                setVarified(false)
-                message.error("Wrong OTP");
-            });
+            .post(API_OTP_CONFIRMATION, body, config)
+            .then((res) => {
+                    setVarified(true)
+                    message.success("Phone number varified successfully");
+                })
+                .catch((err) => {
+                    setVarified(false)
+                    message.error("Wrong OTP");
+                });
     }
 
     const sendOTP = () => {
@@ -74,6 +75,10 @@ export default function FirstForm(props) {
 
     return (
         <Form style={cardAnimation} form={form} className="my-5" onFinish={props.next}>
+            <Row justify="end">
+                <Link to="/profile"><Button size="middle" type="primary">CS</Button></Link>
+            </Row>
+            <br/>
             <Form.Item name="phone_number" label="Phone number" rules={[
                 {
                     pattern: /^[\d]{11,11}$/,
@@ -106,7 +111,7 @@ export default function FirstForm(props) {
             </Row>
             <br/>
             <Row justify="center">
-                <Button size="large" shape="round" type="primary" style={{marginLeft:"30px"}}>Cancel Activity</Button>
+                <Button size="large" shape="round" type="primary" style={{marginLeft:"30px"}} onClick={props.cancelActivity}>Cancel Activity</Button>
             </Row>
             <br/>
             <Row justify="center">

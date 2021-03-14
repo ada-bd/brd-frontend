@@ -1,11 +1,12 @@
-import React,{ useState,useRef } from 'react'
+import React,{ useState } from 'react'
+// import React,{ useState,useRef } from 'react'
 import { Form, Input,Row,Button,Select } from 'antd'
-import SignatureCanvas from 'react-signature-canvas'
+// import SignatureCanvas from 'react-signature-canvas'
 
 const { Option } = Select;
 
 export default function ThirdForm(props) {
-    const sigPad = useRef({})
+    // const sigPad = useRef({})
     const [cardHidden,setCardHidden] = useState(true)
     const [form] = Form.useForm()
 
@@ -23,7 +24,15 @@ export default function ThirdForm(props) {
 
     return (
         <Form style={cardAnimation} form={form} onFinish={props.formSubmit}>
-            <Form.Item name="outlet_code" label="Outlet code" rules={[{ required: true }]}>
+            <Form.Item name="outlet_code" label="Outlet code" rules={[
+                {
+                    pattern: /^[\d]{10,11}$/,
+                    message: "Outlet code must be between 10 digits and 11 digits.",
+                },
+                {
+                    required: true
+                }
+            ]}>
                 <Input type="number" placeholder="Min 10 Max 11" style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_code",e.target.value)}/>
             </Form.Item>
             <Form.Item name="outlet_name" label="Outlet name" rules={[{ required: true }]}>
@@ -62,14 +71,14 @@ export default function ThirdForm(props) {
                     <Option value="4">Brand Message</Option>
                 </Select>
             </Form.Item>
-            <Form.Item label="Signature">
+            {/* <Form.Item label="Signature">
                 <div style={{border:'1px solid black'}}>
                     <SignatureCanvas 
                         ref={sigPad}
                         penColor='black'
                         canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
                 </div>
-            </Form.Item>
+            </Form.Item> */}
             <Row justify="center">
                 <Button size="large" shape="round" type="primary" onClick={props.next}>Review form</Button>
             </Row>
