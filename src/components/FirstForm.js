@@ -69,7 +69,7 @@ export default function FirstForm(props) {
                 message.success("OTP Send successfully");
             })
             .catch((err) => {
-                message.error("OTP Send failed");
+                message.error(err.response.data[0]);
             });
     }
     return (
