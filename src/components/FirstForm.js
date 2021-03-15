@@ -72,7 +72,6 @@ export default function FirstForm(props) {
                 message.error("OTP Send failed");
             });
     }
-
     return (
         <Form style={cardAnimation} form={form} className="my-5" onFinish={props.next}>
             <Row justify="end">
@@ -92,7 +91,7 @@ export default function FirstForm(props) {
             </Form.Item>
             <Row justify="center">
                 <Button size="large" shape="round" type="primary" onClick={clearTimer} style={{marginRight:"20px"}}>Send</Button>
-                <Button size="large" shape="round" type="primary" onClick={clearTimer}>Re-send</Button>
+                <Button size="large" shape="round" type="primary" onClick={clearTimer} disabled={timer>0}>Re-send</Button>
             </Row>
             <br/>
             <Form.Item label="Input OTP" name="otp">
