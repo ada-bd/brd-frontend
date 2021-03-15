@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 // import React,{ useState,useRef } from 'react'
-import { Form, Input,Row,Button,Select } from 'antd'
+import { Form, Input,Row,Button,Select,Modal } from 'antd'
 // import SignatureCanvas from 'react-signature-canvas'
 
 const { Option } = Select;
@@ -19,7 +19,9 @@ export default function ThirdForm(props) {
     //     props.thirdFormFinish(outlet_code,outlet_name,brand,watched_av,contact_method,canvas)
     //     props.finalSubmit()
     // }
-
+    function showModal() {
+        Modal.info({content: 'Please shift to AR app followed by Brand message'});
+    }
     const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
 
     return (
@@ -41,7 +43,10 @@ export default function ThirdForm(props) {
             <Form.Item name="brand" label="Current Brand" rules={[{ required: true }]}>
                 <Select
                     placeholder="Select"
-                    onChange={(e)=>props.onChange("brand",e)}
+                    onChange={(e)=>{
+                        showModal()
+                        props.onChange("brand",e)
+                    }}
                     >
                     <Option value="1">Navy</Option>
                     <Option value="2">Star</Option>
