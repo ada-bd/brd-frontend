@@ -19,7 +19,7 @@
   - Resend OTP Button(Visible after first click to send otp)
   - Input OTP(4 digit number input system to check otp)
   - 30 seconds timer to validate otp. It will start as long as OTP is sent or resend
-  - Varify button to check OTP varified
+  - Verify button to check OTP varified
   - Below two buttons logout and next
 - Step 2:
   - Name

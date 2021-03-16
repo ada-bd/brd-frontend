@@ -49,19 +49,19 @@ export default function SecondForm(props) {
                     placeholder="Select"
                     onChange={(e)=>props.onChange("occupation",e)}
                 >
-                    <Option value="1">Service Holder ( চাকরিজীবী )</Option>
-                    <Option value="2">Student ( স্টূডেন্ট )</Option>
-                    <Option value="3">Small Medium Enterprise Businessman ( ক্ষুদ্রওমাঝািীবযাবসায়ী )</Option>
-                    <Option value="4">Factory Worker ( কািখানাকমী )</Option>
-                    <Option value="5">Shop Assistant ( দ াকানসহকারি )</Option>
-                    <Option value="6">Driver/ Helper ( ড্রাইভাি / দহলপাি )</Option>
-                    <Option value="7">Rickshaw / Van Puller ( রিকশাচালক/ ভযানচালক )</Option>
-                    <Option value="8">Mechanic ( দমকারনক )</Option>
-                    <Option value="9">Garments Factory Worker ( গাডমেন্টস ফ্যাক্টিীওয়াকোি )</Option>
+                    <Option value="1">Service Holder ( চাকুরীজীবী )</Option>
+                    <Option value="2">Student ( ছাত্র )</Option>
+                    <Option value="3">Small Medium Enterprise Businessman ( ক্ষুদ্র ও মাঝারী ব্যবসায়ী )</Option>
+                    <Option value="4">Factory Worker ( কারখানা কর্মী )</Option>
+                    <Option value="5">Shop Assistant ( দোকান সহকারি )</Option>
+                    <Option value="6">Driver/ Helper ( ড্রাইভার / হেল্পার )</Option>
+                    <Option value="7">Rickshaw / Van Puller ( রিকশাচালক / ভ্যান চালক )</Option>
+                    <Option value="8">Mechanic ( মেকানিক )</Option>
+                    <Option value="9">Garments Factory Worker ( গার্মেন্টস ফ্যাক্টরি ওয়ার্কার )</Option>
                     <Option value="10">Farmer ( কৃষক )</Option>
-                    <Option value="11">Security Guard ( রসরকউরিটিগােে )</Option>
-                    <Option value="12">Unemployed/Dependent</Option>
-                    <Option value="13">Other</Option>
+                    <Option value="11">Security Guard ( সিকিউরিটি গার্ড )</Option>
+                    <Option value="12">Unemployed/Dependent ( বেকার )</Option>
+                    <Option value="13">Other ( অন্যান্য )</Option>
                 </Select>
             </Form.Item>
             <Form.Item label="Disclaimer">

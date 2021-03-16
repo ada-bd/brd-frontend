@@ -29,19 +29,19 @@ export default function ReviewForm(props) {
                     placeholder="Select"
                     onChange={(e)=>props.onChange("occupation",e)}
                 >
-                    <Option value="1">Service Holder ( চাকরিজীবী )</Option>
-                    <Option value="2">Student ( স্টূডেন্ট )</Option>
-                    <Option value="3">Small Medium Enterprise Businessman ( ক্ষুদ্রওমাঝািীবযাবসায়ী )</Option>
-                    <Option value="4">Factory Worker ( কািখানাকমী )</Option>
-                    <Option value="5">Shop Assistant ( দ াকানসহকারি )</Option>
-                    <Option value="6">Driver/ Helper ( ড্রাইভাি / দহলপাি )</Option>
-                    <Option value="7">Rickshaw / Van Puller ( রিকশাচালক/ ভযানচালক )</Option>
-                    <Option value="8">Mechanic ( দমকারনক )</Option>
-                    <Option value="9">Garments Factory Worker ( গাডমেন্টস ফ্যাক্টিীওয়াকোি )</Option>
+                    <Option value="1">Service Holder ( চাকুরীজীবী )</Option>
+                    <Option value="2">Student ( ছাত্র )</Option>
+                    <Option value="3">Small Medium Enterprise Businessman ( ক্ষুদ্র ও মাঝারী ব্যবসায়ী )</Option>
+                    <Option value="4">Factory Worker ( কারখানা কর্মী )</Option>
+                    <Option value="5">Shop Assistant ( দোকান সহকারি )</Option>
+                    <Option value="6">Driver/ Helper ( ড্রাইভার / হেল্পার )</Option>
+                    <Option value="7">Rickshaw / Van Puller ( রিকশাচালক / ভ্যান চালক )</Option>
+                    <Option value="8">Mechanic ( মেকানিক )</Option>
+                    <Option value="9">Garments Factory Worker ( গার্মেন্টস ফ্যাক্টরি ওয়ার্কার )</Option>
                     <Option value="10">Farmer ( কৃষক )</Option>
-                    <Option value="11">Security Guard ( রসরকউরিটিগােে )</Option>
-                    <Option value="12">Unemployed/Dependent</Option>
-                    <Option value="13">Other</Option>
+                    <Option value="11">Security Guard ( সিকিউরিটি গার্ড )</Option>
+                    <Option value="12">Unemployed/Dependent ( বেকার )</Option>
+                    <Option value="13">Other ( অন্যান্য )</Option>
                 </Select>
             </Form.Item>
             <Form.Item name="outlet_code" label="Outlet code" rules={[{ required: true }]}>
@@ -55,11 +55,10 @@ export default function ReviewForm(props) {
                     placeholder="Select"
                     onChange={(e)=>props.onChange("brand",e)}
                     >
-                    <Option value="1">Navy</Option>
-                    <Option value="2">Star</Option>
-                    <Option value="3">Derby</Option>
-                    <Option value="4">Hollywood</Option>
-                    <Option value="5">Royals</Option>
+                    <Option value="1">Derby (ডার্বি)</Option>
+                    <Option value="2">Hollywood (হলিউড)</Option>
+                    <Option value="3">Royals (রয়ালস)</Option>
+                    <Option value="4">(অন্যান্য)</Option>
                 </Select>
             </Form.Item>
             <Form.Item name="watched_av" label="Have existing adult smoker watched AV?" rules={[{ required: true }]}>
@@ -77,10 +76,10 @@ export default function ReviewForm(props) {
                     placeholder="Select"
                     onChange={(e)=>props.onChange("contact_method",e)}
                 >
-                    <Option value="1">Lighter VAO</Option>
-                    <Option value="2">Plastic Sachet</Option>
-                    <Option value="3">1 Stick trial</Option>
-                    <Option value="4">Brand Message</Option>
+                    <Option value="1">1 Stick (১ শলাকা)</Option>
+                    <Option value="2">2-3 Sticks (২ হতে ৩ শলাকা)</Option>
+                    <Option value="3">4-5 Sticks (৪ হতে ৫ শলাকা)</Option>
+                    <Option value="4">More than 5 Sticks (৫ শলাকার বেশি)</Option>
                 </Select>
             </Form.Item>
             <br/>

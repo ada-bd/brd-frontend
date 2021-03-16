@@ -106,7 +106,7 @@ export default function FirstForm(props) {
                     format={percent => `${percent}`}
                     strokeColor={{'0%': 'red','100%': 'green'}} 
                 />
-                <Button size="large" shape="round" type="primary" style={{marginLeft:"30px"}} onClick={checkOTPVarification}>Varify</Button>
+                <Button size="large" shape="round" type="primary" style={{marginLeft:"30px"}} onClick={checkOTPVarification}>Verify</Button>
             </Row>
             <br/>
             <Row justify="center">

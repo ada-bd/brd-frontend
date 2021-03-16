@@ -42,17 +42,16 @@ export default function ThirdForm(props) {
             </Form.Item>
             <Form.Item name="brand" label="Current Brand" rules={[{ required: true }]}>
                 <Select
-                    placeholder="Select"
+                    placeholder="Which brand do you smoke on a regular basis? "
                     onChange={(e)=>{
-                        showModal()
+                        // showModal()
                         props.onChange("brand",e)
                     }}
                     >
-                    <Option value="1">Navy</Option>
-                    <Option value="2">Star</Option>
-                    <Option value="3">Derby</Option>
-                    <Option value="4">Hollywood</Option>
-                    <Option value="5">Royals</Option>
+                    <Option value="1">Derby (ডার্বি)</Option>
+                    <Option value="2">Hollywood (হলিউড)</Option>
+                    <Option value="3">Royals (রয়ালস)</Option>
+                    <Option value="4">(অন্যান্য)</Option>
                 </Select>
             </Form.Item>
             <Form.Item name="watched_av" label="Have existing adult smoker watched AV?" rules={[{ required: true }]}>
@@ -65,15 +64,15 @@ export default function ThirdForm(props) {
                     <Option value="3">Partial</Option>
                 </Select>
             </Form.Item>
-            <Form.Item name="contact_method" label="Contact method" rules={[{ required: true }]}>
+            <Form.Item name="contact_method" label="How did the trial end" rules={[{ required: true }]}>
                 <Select
                     placeholder="Select"
                     onChange={(e)=>props.onChange("contact_method",e)}
                 >
-                    <Option value="1">Lighter VAO</Option>
-                    <Option value="2">Plastic Sachet</Option>
-                    <Option value="3">1 Stick trial</Option>
-                    <Option value="4">Brand Message</Option>
+                    <Option value="1">1 Stick (১ শলাকা)</Option>
+                    <Option value="2">2-3 Sticks (২ হতে ৩ শলাকা)</Option>
+                    <Option value="3">4-5 Sticks (৪ হতে ৫ শলাকা)</Option>
+                    <Option value="4">More than 5 Sticks (৫ শলাকার বেশি)</Option>
                 </Select>
             </Form.Item>
             {/* <Form.Item label="Signature">
