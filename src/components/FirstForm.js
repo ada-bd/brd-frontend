@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Input,Form,Button, Row, Progress,message } from 'antd';
+import { Input,Form,Button, Row, Progress,message,Modal,Radio } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
@@ -7,6 +7,7 @@ import { API_SEND_OTP,API_OTP_CONFIRMATION } from '../API'
 
 let tick = null;
 export default function FirstForm(props) {
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
     const [varified,setVarified] = useState(false)
     const [timer,setTimer] = useState(60)
@@ -72,8 +73,30 @@ export default function FirstForm(props) {
                 message.error(err.response.data[0]);
             });
     }
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+        props.cancelActivity()
+    };
+    
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+    const radioStyle = {
+        display: 'block',
+        height: '30px',
+        lineHeight: '30px',
+    };
+
     return (
         <Form style={cardAnimation} form={form} className="my-5" onFinish={props.next}>
+
+            <Modal title="Select reason to cancel" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                <Radio.Group onChange={(e)=> props.onChange('cancel_activity',e.target.value)} value={props.status}>
+                    <Radio style={radioStyle} value={1}>OTP Not receive</Radio>
+                    <Radio style={radioStyle} value={2}>Consumer not willing to continue</Radio>
+                </Radio.Group>
+            </Modal>
             <Row justify="end">
                 <Link to="/profile"><Button size="middle" type="primary">CS</Button></Link>
             </Row>
@@ -110,7 +133,7 @@ export default function FirstForm(props) {
             </Row>
             <br/>
             <Row justify="center">
-                <Button size="large" shape="round" type="primary" style={{marginLeft:"30px"}} onClick={props.cancelActivity}>Cancel Activity</Button>
+                <Button size="large" shape="round" type="primary" style={{marginLeft:"30px"}} onClick={()=>setIsModalVisible(true)}>Cancel Activity</Button>
             </Row>
             <br/>
             <Row justify="center">

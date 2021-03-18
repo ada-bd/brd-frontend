@@ -16,6 +16,7 @@ function FormPage(props) {
         phone_number: "",
         name:"",
         age: "",
+        cancel_activity: 1,
         occupation: "",
         outlet_code: "",
         outlet_name: "",
@@ -53,6 +54,7 @@ function FormPage(props) {
             phone_number:  "+88"+state.phone_number,
             name: state.name,
             age:  state.age,
+            cancel_activity: null,
             occupation:  state.occupation,
             outlet_code:  state.outlet_code,
             outlet_name:  state.outlet_name,
@@ -72,12 +74,34 @@ function FormPage(props) {
             });
     }
     const cancelActivity = () => {
-        window.location.href = "/form"
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const token = localStorage.getItem('brd-login');
+        config.headers['Authorization'] = `Token ${token}`;
+
+        const body = JSON.stringify({
+            phone_number:  "+88"+state.phone_number,
+            cancel_activity: state.cancel_activity
+        });
+        axios
+            .post(API_FINAL_SUBMISSION, body, config)
+            .then((res) => {
+                message.success("Form cancelled  successfully");
+                props.history.push('/profile')
+            })
+            .catch((err) => {
+                message.error(err.response.statusText);
+            });
+
+        // window.location.href = "/form"
     }
     const renderForm = () => {
         switch (step) {
             case 0:
-                return <FirstForm next={nextStep} logout={logout} onChange={onChange} cancelActivity={cancelActivity}/>
+                return <FirstForm next={nextStep} logout={logout} onChange={onChange} cancelActivity={cancelActivity} status={state.cancel_activity}/>
             case 1:
                 return <SecondForm next={nextStep} logout={logout} onChange={onChange}/>
             case 2:
