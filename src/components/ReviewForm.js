@@ -1,12 +1,16 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Form, Select, Input, Button, Row } from 'antd'
 
 const { Option } = Select
 
 export default function ReviewForm(props) {
+    const [sending,setSending] = useState(false)
     const [form] = Form.useForm();
     return (
-        <Form form={form} onFinish={props.formSubmit} initialValues={props.state}>
+        <Form form={form} onFinish={()=>{
+            setSending(true)
+            props.formSubmit()
+        }} initialValues={props.state}>
             <Form.Item label="Name" name="name" rules={[{ required: true }]}>
                 <Input onChange={(e)=>props.onChange("name",e.target.value)}/>
             </Form.Item>
@@ -84,7 +88,7 @@ export default function ReviewForm(props) {
             </Form.Item>
             <br/>
             <Row justify="center">
-                <Button size="large" shape="round" type="primary" htmlType="submit">Submit</Button>
+                <Button size="large" shape="round" type="primary" htmlType="submit" disabled={sending}>Submit</Button>
             </Row>
         </Form>
     )

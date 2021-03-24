@@ -7,6 +7,7 @@ const { Option } = Select;
 
 export default function ThirdForm(props) {
     // const sigPad = useRef({})
+    const [sending,setSending] = useState(false)
     const [cardHidden,setCardHidden] = useState(true)
     const [form] = Form.useForm()
 
@@ -25,7 +26,10 @@ export default function ThirdForm(props) {
     const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
 
     return (
-        <Form style={cardAnimation} form={form} onFinish={props.formSubmit}>
+        <Form style={cardAnimation} form={form} onFinish={()=>{
+            setSending(true)
+            props.formSubmit()
+        }}>
             <Form.Item name="outlet_code" label="Outlet code" rules={[
                 {
                     pattern: /^[\d]{10,11}$/,
@@ -89,7 +93,7 @@ export default function ThirdForm(props) {
             <br/>
             <Row justify="center">
                 <Button size="large" shape="round" type="default" style={{marginRight:"20px"}} onClick={props.logout}>Logout</Button>
-                <Button size="large" shape="round" type="primary" htmlType="submit">Submit</Button>
+                <Button size="large" shape="round" type="primary" htmlType="submit" disabled={sending}>Submit</Button>
             </Row>
         </Form>
     )
