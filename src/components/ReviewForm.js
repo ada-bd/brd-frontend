@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
-import { Form, Select, Input, Button, Row } from 'antd'
+import { Form, Select, Input, Button, Row, Typography } from 'antd'
 
 const { Option } = Select
+const { Text } = Typography;
 
 export default function ReviewForm(props) {
     const [sending,setSending] = useState(false)
@@ -48,11 +49,11 @@ export default function ReviewForm(props) {
                     <Option value="13">Other ( অন্যান্য )</Option>
                 </Select>
             </Form.Item>
-            <Form.Item name="outlet_code" label="Outlet code" rules={[{ required: true }]}>
-                <Input type="number" placeholder="Min 10 Max 11" style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_code",e.target.value)}/>
+            <Form.Item label="Outlet code">
+                <Text type="secondary">{props.outletCode}</Text>
             </Form.Item>
-            <Form.Item name="outlet_name" label="Outlet name" rules={[{ required: true }]}>
-                <Input style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_name",e.target.value)}/>
+            <Form.Item label="Outlet name">
+                <Text type="secondary">{props.outletName}</Text>
             </Form.Item>
             <Form.Item name="brand" label="Current Brand" rules={[{ required: true }]}>
                 <Select

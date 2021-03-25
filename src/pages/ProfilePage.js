@@ -57,9 +57,9 @@ export default function ProfilePage() {
         axios
             .put(API_BRD_PROFILE, body, config)
             .then((res) => {
-                window.location.href = "/form"
-                localStorage.setItem('brd-outlet_code', res.data.outlet_code);                
-                localStorage.setItem('brd-outlet_name', res.data.outlet_name);
+                window.location.href = "/"
+                localStorage.setItem('brd-outlet_code', res.data.data.outlet_code);                
+                localStorage.setItem('brd-outlet_name', res.data.data.outlet_name);
             })
             .catch((err) => {
                 console.log(err.response);

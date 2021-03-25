@@ -11,7 +11,7 @@ import ReviewForm from '../components/ReviewForm'
 import { API_FINAL_SUBMISSION } from '../API'
 
 function FormPage(props) {
-    const [step,setStep] = useState(0)
+    const [step,setStep] = useState(2)
     const [state,setState] = useState({
         phone_number: "",
         name:"",
@@ -23,7 +23,7 @@ function FormPage(props) {
         brand: "",
         watched_av: null,
         contact_method:"",
-        // signature:""
+        signature:""
     })
 
     useEffect(()=>{
@@ -31,7 +31,7 @@ function FormPage(props) {
             props.history.push("/profile")
         }
         else{
-            setState({...state,"outlet_code":props.outletCode,"outlet_name":props.outlet_name})
+            setState({...state,"outlet_code":props.outletCode,"outlet_name":props.outletName})
         }
     },[])
 
@@ -114,9 +114,9 @@ function FormPage(props) {
             case 1:
                 return <SecondForm next={nextStep} logout={logout} onChange={onChange}/>
             case 2:
-                return <ThirdForm logout={logout} next={nextStep} onChange={onChange} formSubmit={formSubmit}/>
+                return <ThirdForm logout={logout} next={nextStep} onChange={onChange} formSubmit={formSubmit} outletCode={state.outlet_code} outletName={state.outlet_name}/>
             case 3:
-                return <ReviewForm onChange={onChange} state={state} formSubmit={formSubmit}/>
+                return <ReviewForm onChange={onChange} state={state} formSubmit={formSubmit} outletCode={state.outlet_code} outletName={state.outlet_name}/>
             default:
                 return <h1>Thank You</h1>
         }

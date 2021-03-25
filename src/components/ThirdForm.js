@@ -1,12 +1,12 @@
-import React,{ useState } from 'react'
-// import React,{ useState,useRef } from 'react'
-import { Form, Input,Row,Button,Select,Modal } from 'antd'
-// import SignatureCanvas from 'react-signature-canvas'
+import React,{ useState,useRef } from 'react'
+import { Form,Row,Button,Select ,Typography} from 'antd'
+import SignatureCanvas from 'react-signature-canvas'
 
 const { Option } = Select;
+const { Text } = Typography;
 
 export default function ThirdForm(props) {
-    // const sigPad = useRef({})
+    const sigPad = useRef({})
     const [sending,setSending] = useState(false)
     const [cardHidden,setCardHidden] = useState(true)
     const [form] = Form.useForm()
@@ -20,29 +20,19 @@ export default function ThirdForm(props) {
     //     props.thirdFormFinish(outlet_code,outlet_name,brand,watched_av,contact_method,canvas)
     //     props.finalSubmit()
     // }
-    function showModal() {
-        Modal.info({content: 'Please shift to AR app followed by Brand message'});
-    }
-    const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
 
+    const cardAnimation = cardHidden? {opacity:0,transform:"translate3d(0, -60px, 0)"} : null
+    
     return (
         <Form style={cardAnimation} form={form} onFinish={()=>{
             setSending(true)
             props.formSubmit()
         }}>
-            <Form.Item name="outlet_code" label="Outlet code" rules={[
-                {
-                    pattern: /^[\d]{10,11}$/,
-                    message: "Outlet code must be between 10 digits and 11 digits.",
-                },
-                {
-                    required: true
-                }
-            ]}>
-                <Input type="number" placeholder="Min 10 Max 11" style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_code",e.target.value)}/>
+            <Form.Item label="Outlet code">
+                <Text type="secondary">{props.outletCode}</Text>
             </Form.Item>
-            <Form.Item name="outlet_name" label="Outlet name" rules={[{ required: true }]}>
-                <Input style={{minWidth:"100%"}} onChange={(e)=>props.onChange("outlet_name",e.target.value)}/>
+            <Form.Item label="Outlet name">
+                <Text type="secondary">{props.outletName}</Text>
             </Form.Item>
             <Form.Item name="brand" label="Current Brand" rules={[{ required: true }]}>
                 <Select
@@ -79,14 +69,14 @@ export default function ThirdForm(props) {
                     <Option value="4">More than 5 Sticks (৫ শলাকার বেশি)</Option>
                 </Select>
             </Form.Item>
-            {/* <Form.Item label="Signature">
+            <Form.Item label="Signature">
                 <div style={{border:'1px solid black'}}>
                     <SignatureCanvas 
                         ref={sigPad}
                         penColor='black'
                         canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
                 </div>
-            </Form.Item> */}
+            </Form.Item>
             <Row justify="center">
                 <Button size="large" shape="round" type="primary" onClick={props.next}>Review form</Button>
             </Row>

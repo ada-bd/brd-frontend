@@ -16,10 +16,10 @@ const { Content, Footer } = Layout;
 
 export default function App() {
     const isAuthenticated = localStorage.getItem('brd-login') != null;
-    const outlet_code = localStorage.getItem('brd-outlet_code')? localStorage.getItem('brd-outlet_code'):null;
-    const outlet_name = localStorage.getItem('brd-outlet_name')? localStorage.getItem('brd-outlet_name'): null;
     // localStorage.removeItem('brd-outlet_name')
     // localStorage.removeItem('brd-outlet_code')
+    const outlet_code = localStorage.getItem('brd-outlet_code')
+    const outlet_name = localStorage.getItem('brd-outlet_name')
     return (
         <Layout>
             <Content style={{minHeight: '70vh'}}>
