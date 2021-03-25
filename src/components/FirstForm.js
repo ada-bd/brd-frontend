@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { Input,Form,Button, Row, Progress,message,Modal,Radio } from 'antd';
+import { UserOutlined } from '@ant-design/icons'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
@@ -98,7 +99,8 @@ export default function FirstForm(props) {
                 </Radio.Group>
             </Modal>
             <Row justify="end">
-                <Link to="/profile"><Button size="middle" type="primary">CS</Button></Link>
+                <Link to="/profile"><UserOutlined size="middle" type="primary" style={{fontSize:30}}/></Link>
+                <Link to="/cs"><Button size="middle" type="primary" style={{marginLeft:"20px"}}>CS</Button></Link>
             </Row>
             <br/>
             <Form.Item name="phone_number" label="Phone number" rules={[

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Card, Row, Col, message } from 'antd'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
@@ -25,6 +25,15 @@ function FormPage(props) {
         contact_method:"",
         // signature:""
     })
+
+    useEffect(()=>{
+        if(props.outletCode === null || props.outletName === null){
+            props.history.push("/profile")
+        }
+        else{
+            setState({...state,"outlet_code":props.outletCode,"outlet_name":props.outlet_name})
+        }
+    },[])
 
     const nextStep = () => {
         setStep(step=> step + 1 )
