@@ -11,7 +11,7 @@ import ReviewForm from '../components/ReviewForm'
 import { API_FINAL_SUBMISSION } from '../API'
 
 function FormPage(props) {
-    const [step,setStep] = useState(2)
+    const [step,setStep] = useState(0)
     const [state,setState] = useState({
         phone_number: "",
         name:"",
