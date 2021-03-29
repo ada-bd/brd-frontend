@@ -33,7 +33,7 @@ export default function ProfilePage() {
                     "territory": res.data.territory,
                     "tab_imei": res.data.tab_imei,
                     "sim_no": res.data.sim_no,
-                    "address": res.data.address,
+                    "name": res.data.name,
                     "outlet_code": res.data.outlet_code,
                     "outlet_name": res.data.outlet_name,
                 })                  
@@ -108,8 +108,8 @@ export default function ProfilePage() {
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            label="Address"
-                            name="address"
+                            label="Name"
+                            name="name"
                         >
                             <Input />
                         </Form.Item>
