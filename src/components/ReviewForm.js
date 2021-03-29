@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Form, Select, Input, Button, Row, Typography } from 'antd'
+import { Form, Select, Input, Button, Row, Typography, Modal } from 'antd'
 
 const { Option } = Select
 const { Text } = Typography;
@@ -7,6 +7,11 @@ const { Text } = Typography;
 export default function ReviewForm(props) {
     const [sending,setSending] = useState(false)
     const [form] = Form.useForm();
+
+    function showModal() {
+        Modal.info({content: 'Please shifts to AR app followed by Brand message then back to microsite again'});
+    }
+
     return (
         <Form form={form} onFinish={()=>{
             setSending(true)
@@ -58,12 +63,17 @@ export default function ReviewForm(props) {
             <Form.Item name="brand" label="Current Brand" rules={[{ required: true }]}>
                 <Select
                     placeholder="Select"
-                    onChange={(e)=>props.onChange("brand",e)}
+                    onChange={(e)=>{
+                        showModal()
+                        props.onChange("brand",e)
+                    }}
                     >
-                    <Option value="1">Derby (ডার্বি)</Option>
-                    <Option value="2">Hollywood (হলিউড)</Option>
-                    <Option value="3">Royals (রয়ালস)</Option>
-                    <Option value="4">(অন্যান্য)</Option>
+                    <Option value="1">Navy (নেভি)</Option>
+                    <Option value="2">Star (ষ্টার)</Option>
+                    <Option value="3">Derby (ডার্বি)</Option>
+                    <Option value="4">Hollywood (হলিউড)</Option>
+                    <Option value="4">Royals (রয়ালস)</Option>
+                    <Option value="4">Others (অন্যান্য)</Option>
                 </Select>
             </Form.Item>
             <Form.Item name="watched_av" label="Have existing adult smoker watched AV?" rules={[{ required: true }]}>
@@ -81,10 +91,10 @@ export default function ReviewForm(props) {
                     placeholder="Select"
                     onChange={(e)=>props.onChange("contact_method",e)}
                 >
-                    <Option value="1">1 Stick (১ শলাকা)</Option>
-                    <Option value="2">2-3 Sticks (২ হতে ৩ শলাকা)</Option>
-                    <Option value="3">4-5 Sticks (৪ হতে ৫ শলাকা)</Option>
-                    <Option value="4">More than 5 Sticks (৫ শলাকার বেশি)</Option>
+                    <Option value="1">Lighter VAO</Option>
+                    <Option value="2">Plastic Sachet</Option>
+                    <Option value="3">1 Stick Trial</Option>
+                    <Option value="4">Brand message</Option>
                 </Select>
             </Form.Item>
             <br/>

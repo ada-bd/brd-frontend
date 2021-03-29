@@ -8,7 +8,7 @@ import SecondForm from '../components/SecondForm'
 import ThirdForm from '../components/ThirdForm'
 import ReviewForm from '../components/ReviewForm'
 
-import { API_FINAL_SUBMISSION } from '../API'
+import { API_FINAL_SUBMISSION, API_LOGOUT } from '../API'
 
 function FormPage(props) {
     const [step,setStep] = useState(0)
@@ -39,8 +39,24 @@ function FormPage(props) {
         setStep(step=> step + 1 )
     }
     const logout = () => {
-        localStorage.removeItem('brd-login')
-        window.location.href = '/';
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const token = localStorage.getItem('brd-login');
+        config.headers['Authorization'] = `Token ${token}`;
+
+        axios
+        .post(API_LOGOUT, null , config)
+        .then((res) => {
+            message.success("Logout Successfull");
+            localStorage.removeItem('brd-login')
+            window.location.href = '/';
+        })
+        .catch((err) => {
+            message.error(err.response.statusText);
+        });
     }
 
     const onChange = (name,value) => {
@@ -104,9 +120,8 @@ function FormPage(props) {
             .catch((err) => {
                 message.error(err.response.statusText);
             });
-
-        // window.location.href = "/form"
     }
+    
     const renderForm = () => {
         switch (step) {
             case 0:
