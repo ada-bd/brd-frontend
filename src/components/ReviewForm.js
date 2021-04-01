@@ -91,10 +91,13 @@ export default function ReviewForm(props) {
                     placeholder="Select"
                     onChange={(e)=>props.onChange("contact_method",e)}
                 >
-                    <Option value="1">Lighter VAO</Option>
-                    <Option value="2">Plastic Sachet</Option>
-                    <Option value="3">1 Stick Trial</Option>
-                    <Option value="4">Brand message</Option>
+                    <Option value="1">Lighter VAO(KS+Century)</Option>
+                    <Option value="2">Lighter VAO(KS+KS)</Option>
+                    <Option value="3">Plastic Sachet With Century</Option>
+                    <Option value="4">Plastic Sachet With Special Filter</Option>
+                    <Option value="5">1 Stick Trial of Century</Option>
+                    <Option value="6">1 Stick Trial of Special Filter</Option>
+                    <Option value="7">Brand message</Option>
                 </Select>
             </Form.Item>
             <br/>
