@@ -55,6 +55,9 @@ function FormPage(props) {
             window.location.href = '/';
         })
         .catch((err) => {
+            localStorage.removeItem('brd-login')
+            localStorage.removeItem('brd-outlet_name')
+            localStorage.removeItem('brd-outlet_code')
             message.error(err.response.statusText);
         });
     }
