@@ -36,7 +36,9 @@ export default function ProfilePage() {
                     "name": res.data.name,
                     "outlet_code": res.data.outlet_code,
                     "outlet_name": res.data.outlet_name,
-                })                  
+                })     
+                localStorage.setItem('brd-outlet_code', res.data.outlet_code);                
+                localStorage.setItem('brd-outlet_name', res.data.outlet_name);             
             })
             .catch((err) => {
                 console.log(err.response);
@@ -58,8 +60,6 @@ export default function ProfilePage() {
             .put(API_BRD_PROFILE, body, config)
             .then((res) => {
                 window.location.href = "/"
-                localStorage.setItem('brd-outlet_code', res.data.data.outlet_code);                
-                localStorage.setItem('brd-outlet_name', res.data.data.outlet_name);
             })
             .catch((err) => {
                 console.log(err.response);

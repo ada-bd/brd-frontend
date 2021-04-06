@@ -16,8 +16,6 @@ const { Content, Footer } = Layout;
 
 export default function App() {
     const isAuthenticated = localStorage.getItem('brd-login') != null;
-    const outlet_code = localStorage.getItem('brd-outlet_code')
-    const outlet_name = localStorage.getItem('brd-outlet_name')
     return (
         <Layout>
             <Content style={{minHeight: '70vh'}}>
@@ -35,8 +33,6 @@ export default function App() {
                             exact path="/form"
                             isAuthenticated={isAuthenticated}
                             component={FormPage}
-                            outletCode={outlet_code}
-                            outletName={outlet_name}
                         />
                         <ProtectedRoute
                             exact path="/profile"

@@ -21,6 +21,8 @@ export default function LoginPage({ isAuthenticated }) {
         .post(API_LOGIN, body, config)
         .then((res) => {
             localStorage.setItem('brd-login', res.data.token);
+            localStorage.setItem('brd-outlet_code', res.data.outlet_code);                
+            localStorage.setItem('brd-outlet_name', res.data.outlet_name);
             window.location.href = "/form"
         })
         .catch((err) => {

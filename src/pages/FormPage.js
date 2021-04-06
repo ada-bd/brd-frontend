@@ -27,13 +27,19 @@ function FormPage(props) {
     })
 
     useEffect(()=>{
-        if(props.outletCode === null || props.outletName === null){
+        const oc = localStorage.getItem('brd-outlet_code');                
+        const on = localStorage.getItem('brd-outlet_name');
+        if(oc === null || on === null){
             props.history.push("/profile")
         }
         else{
-            setState({...state,"outlet_code":props.outletCode,"outlet_name":props.outletName})
+            setState(state=>({
+                ...state,
+                "outlet_code":oc,
+                "outlet_name":on
+            }))
         }
-    },[])
+    },[props.history])
 
     const nextStep = () => {
         setStep(step=> step + 1 )
@@ -52,6 +58,8 @@ function FormPage(props) {
         .then((res) => {
             message.success("Logout Successfull");
             localStorage.removeItem('brd-login')
+            localStorage.removeItem('brd-outlet_name')
+            localStorage.removeItem('brd-outlet_code')
             window.location.href = '/';
         })
         .catch((err) => {
@@ -75,9 +83,6 @@ function FormPage(props) {
         const token = localStorage.getItem('brd-login');
         config.headers['Authorization'] = `Token ${token}`;
         
-        // let image = new Image()
-        // image.src = state.signature
-        
         const body = JSON.stringify({
             phone_number:  "+88"+state.phone_number,
             name: state.name,
@@ -89,7 +94,6 @@ function FormPage(props) {
             brand:  state.brand,
             watched_av:  state.watched_av,
             contact_method: state.contact_method,
-            // signature: image
         });
         axios
             .post(API_FINAL_SUBMISSION, body, config)
